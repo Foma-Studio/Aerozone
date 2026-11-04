@@ -1,5 +1,5 @@
 
-const CACHE = "aerozone-v1";
+const CACHE = "aerozone-v2";
 
 self.addEventListener("install", event => {
   event.waitUntil(
@@ -9,7 +9,7 @@ self.addEventListener("install", event => {
         "./index.html",
         "./style.css",
         "./manifest.json",
-        "./icon.png"
+        "./icon.svg"
       ])
     )
   );
@@ -17,13 +17,23 @@ self.addEventListener("install", event => {
 });
 
 self.addEventListener("activate", event => {
-  event.waitUntil(self.clients.claim());
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(
+        keys.filter(key => key !== CACHE)
+          .map(key => caches.delete(key))
+      )
+    )
+  );
+  self.clients.claim();
 });
 
 self.addEventListener("fetch", event => {
+  if (event.request.method !== "GET") return;
+
   event.respondWith(
-    caches.match(event.request).then(cached =>
-      cached || fetch(event.request)
-    )
+    caches.match(event.request).then(cached => {
+      return cached || fetch(event.request);
+    })
   );
 });
