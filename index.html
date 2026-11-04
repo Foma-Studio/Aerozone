@@ -3,96 +3,23 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Aerozone</title>
-
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50' y='75' font-size='75' text-anchor='middle' fill='white'>✈</text></svg>">
-
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background: #080808;
-  color: white;
-  font-family: Arial, sans-serif;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.container {
-  text-align: center;
-}
-
-.avatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 28px;
-  background: white;
-  color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 75px;
-  margin: 0 auto 25px;
-}
-
-h1 {
-  font-size: 42px;
-  letter-spacing: 2px;
-}
-
-button {
-  margin-top: 30px;
-  padding: 15px 35px;
-  border: none;
-  border-radius: 12px;
-  background: white;
-  color: black;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-}
-</style>
+<meta name="theme-color" content="#000000">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-<div class="container">
-
-  <div class="avatar">✈</div>
-
-  <h1>Aerozone</h1>
-
-  <button onclick="downloadIcon()">Скачать</button>
-
-</div>
-
-<script>
-function downloadIcon() {
-  const svg = `
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-    <rect width="512" height="512" rx="100" fill="white"/>
-    <text x="256" y="340" font-size="280"
-      text-anchor="middle" fill="black">✈</text>
-  </svg>`;
-
-  const file = new Blob([svg], {
-    type: "image/svg+xml"
-  });
-
-  const url = URL.createObjectURL(file);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = "Aerozone-icon.svg";
-  link.click();
-
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-}
-</script>
+  <main>
+    <img src="icon.png" alt="Aerozone">
+    <h1>Aerozone</h1>
+  </main>
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js");
+    }
+  </script>
 </body>
 </html>
