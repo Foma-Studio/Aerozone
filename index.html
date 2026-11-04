@@ -2,23 +2,23 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aerozone</title>
-<meta name="theme-color" content="#000000">
-<link rel="manifest" href="manifest.json">
-<link rel="icon" href="icon.png">
-<link rel="apple-touch-icon" href="icon.png">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <title>Aerozone</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <main>
-    <img src="icon.png" alt="Aerozone">
+    <img src="./icon.svg" alt="Aerozone">
     <h1>Aerozone</h1>
   </main>
+
   <script>
     if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("sw.js");
+      navigator.serviceWorker.register("./sw.js");
     }
   </script>
 </body>
